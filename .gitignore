@@ -1,5 +1,6 @@
 dags/*
 scratch/*
+plugins/*
 
 .DS_Store
 
