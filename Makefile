@@ -12,6 +12,7 @@ run: build
 		--name=$(NAME) \
 		--mount source=$(PWD)/dags,target=/usr/local/airflow/dags,type=bind \
 		--mount source=$(PWD)/scratch,target=/usr/local/airflow/scratch,type=bind \
+		--mount source=$(PWD)/plugins,target=/usr/local/airflow/plugins,type=bind \
 		-d \
 		-p 8080:$(LOCALPORT) \
 		puckel/docker-airflow
