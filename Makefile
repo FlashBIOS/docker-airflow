@@ -7,7 +7,14 @@ build:
 	docker build --rm -t puckel/docker-airflow .
 
 run: build
-	docker run --rm --name=$(NAME) --mount source=$(PWD)/dags,target=/usr/local/airflow/dags,type=bind -d -p 8080:$(LOCALPORT) puckel/docker-airflow
+	docker run \
+		--rm \
+		--name=$(NAME) \
+		--mount source=$(PWD)/dags,target=/usr/local/airflow/dags,type=bind \
+		--mount source=$(PWD)/scratch,target=/usr/local/airflow/scratch,type=bind \
+		-d \
+		-p 8080:$(LOCALPORT) \
+		puckel/docker-airflow
 	@echo Airflow running on http://localhost:$(LOCALPORT)
 
 kill:
